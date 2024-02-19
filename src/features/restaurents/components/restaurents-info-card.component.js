@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, Text, Image } from "react-native";
+import { Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../typography/text.component";
 
 const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -14,17 +15,6 @@ const RestaurantCard = styled(Card)`
 const RestaurantCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.space[3]};
   background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-
-const Title = styled.Text`
-  font-size: ${(props) => props.theme.sizes[1]};
-  font-family: ${(props) => props.theme.fonts.heading};
-  color: ${(props) => props.theme.colors.ui.primary};
-`;
-
-const Address = styled.Text`
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
 const Info = styled.View`
@@ -53,11 +43,10 @@ const Open = styled(SvgXml)`
   align-items: flex-end;
 `;
 
-const Closed = styled.Text`
-  color: ${(props) => props.theme.colors.text.error};
-  font-weight: bold;
+const Icon = styled.Image`
+  width: 15px;
+  height: 15px;
 `;
-
 export const RestaurentInfoCard = ({ restaurent = {} }) => {
   const {
     name = "some restaurant",
@@ -78,7 +67,7 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
     <RestaurantCard elevation={5}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
-        <Title>{name}</Title>
+        <Text variant="label">{name}</Text>
         <Section>
           <Rating>
             {ratingArray.map((index) => (
@@ -86,14 +75,18 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
-            {isClosedTemparerily && <Closed>TEMPORARILY CLOSED</Closed>}
-            <Spacer varient={"left.medium"} />
-            {isOpenNow && <Open xml={open} width={20} height={20} />}
-            <Spacer varient={"left.large"} />
-            <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
+            {isClosedTemparerily && (
+              <Text variant="error">TEMPORARILY CLOSED</Text>
+            )}
+            <Spacer position="left" size="medium">
+              {isOpenNow && <Open xml={open} width={20} height={20} />}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <Icon source={{ uri: icon }} />
+            </Spacer>
           </SectionEnd>
         </Section>
-        <Address>{address}</Address>
+        <Text variant="body">{address}</Text>
       </Info>
     </RestaurantCard>
   );

@@ -2,40 +2,29 @@ import React from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 
-const TopSmall = styled.View`
-  margin-top: ${(props) => props.theme.space[1]};
-`;
-const TopMedium = styled.View`
-  margin-top: ${(props) => props.theme.space[2]};
-`;
-const TopLarge = styled.View`
-  margin-top: ${(props) => props.theme.space[3]};
-`;
-const LeftSmall = styled.View`
-  margin-left: ${(props) => props.theme.space[1]};
-`;
-const LeftMedium = styled.View`
-  margin-left: ${(props) => props.theme.space[2]};
-`;
-const LeftLarge = styled.View`
-  margin-left: ${(props) => props.theme.space[3]};
+const sizeVariant = {
+  small: 1,
+  medium: 2,
+  large: 3,
+};
+const positionVariant = {
+  top: "marginTop",
+  bottom: "marginBottom",
+  left: "marginLeft",
+  right: "marginRight",
+};
+
+const getVarient = (position, size, theme) => {
+  const sizeIndex = sizeVariant[size];
+  const property = positionVariant[position];
+  return `${property}:${theme.space[sizeIndex]}`;
+};
+
+export const Spacer = styled.View`
+  ${({ position, size, theme }) => getVarient(position, size, theme)}
 `;
 
-export const Spacer = ({ varient }) => {
-  if (varient === "top.medium") {
-    return <TopMedium />;
-  }
-  if (varient === "top.large") {
-    return <TopLarge />;
-  }
-  if (varient === "left.small") {
-    return <LeftSmall />;
-  }
-  if (varient === "left.medium") {
-    return <LeftMedium />;
-  }
-  if (varient === "left.large") {
-    return <LeftLarge />;
-  }
-  return <TopSmall />;
+Spacer.defaultProps = {
+  position: "top",
+  size: "small",
 };
