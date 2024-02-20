@@ -6,8 +6,31 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { RestaurentsScreen } from "./src/features/restaurents/screens/restaurents.screen";
+import { MapScreen } from "./src/features/restaurents/screens/map.screen";
+import { SettingScreen } from "./src/features/restaurents/screens/settings.screen";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+
+const TAB_ICONS = {
+  Restaurents: "restaurant",
+  Map: "md-map",
+  Settings: "md-settings",
+};
+
+const screenOptions = ({ route }) => {
+  const iconName = TAB_ICONS[route.name];
+  console.log(iconName);
+  return {
+    tabBarIcon: ({ color, size }) => (
+      <Ionicons name={iconName} color={color} size={size} />
+    ),
+    tabBarInactiveTintColor: "gray",
+    tabBarActiveTintColor: "tomato",
+  };
+};
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -20,10 +43,17 @@ export default function App() {
     return null;
   }
 
+  const Tabs = createBottomTabNavigator();
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurentsScreen />
+        <NavigationContainer>
+          <Tabs.Navigator screenOptions={screenOptions}>
+            <Tabs.Screen name="Restaurents" component={RestaurentsScreen} />
+            <Tabs.Screen name="Map" component={MapScreen} />
+            <Tabs.Screen name="Settings" component={SettingScreen} />
+          </Tabs.Navigator>
+        </NavigationContainer>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
