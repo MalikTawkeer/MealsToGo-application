@@ -13,6 +13,7 @@ import { theme } from "./src/infrastructure/theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { ReastaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 
 const TAB_ICONS = {
   Restaurents: "restaurant",
@@ -47,13 +48,15 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tabs.Navigator screenOptions={screenOptions}>
-            <Tabs.Screen name="Restaurents" component={RestaurentsScreen} />
-            <Tabs.Screen name="Map" component={MapScreen} />
-            <Tabs.Screen name="Settings" component={SettingScreen} />
-          </Tabs.Navigator>
-        </NavigationContainer>
+        <ReastaurantsContextProvider>
+          <NavigationContainer>
+            <Tabs.Navigator screenOptions={screenOptions}>
+              <Tabs.Screen name="Restaurents" component={RestaurentsScreen} />
+              <Tabs.Screen name="Map" component={MapScreen} />
+              <Tabs.Screen name="Settings" component={SettingScreen} />
+            </Tabs.Navigator>
+          </NavigationContainer>
+        </ReastaurantsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

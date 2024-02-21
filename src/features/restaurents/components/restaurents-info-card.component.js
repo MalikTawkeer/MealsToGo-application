@@ -26,13 +26,13 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
     address = "lane 2 of baba pora, ringath",
     isOpenNow = true,
     rating = 4,
-    isClosedTemparerily = true,
+    isClosedTemporarily = "TEMPORARILY CLOSED",
   } = restaurent;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <RestaurantCard elevation={5}>
+    <RestaurantCard elevation={5} key={name}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
@@ -43,8 +43,8 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
-            {isClosedTemparerily && (
-              <Text variant="error">TEMPORARILY CLOSED</Text>
+            {isClosedTemporarily && (
+              <Text variant="error">{isClosedTemporarily}</Text>
             )}
             <Spacer position="left" size="medium">
               {isOpenNow && <Open xml={open} width={20} height={20} />}
