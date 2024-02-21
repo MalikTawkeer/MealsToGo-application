@@ -33,12 +33,12 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
 
   return (
     <RestaurantCard elevation={5} key={name}>
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <RestaurantCardCover source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map((index) => (
+            {ratingArray.map((_, index) => (
               <SvgXml key={index} xml={star} width={20} height={20} />
             ))}
           </Rating>

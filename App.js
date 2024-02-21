@@ -14,16 +14,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { ReastaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const TAB_ICONS = {
-  Restaurents: "restaurant",
+  Restaurents: "md-restaurant",
   Map: "md-map",
   Settings: "md-settings",
 };
 
 const screenOptions = ({ route }) => {
   const iconName = TAB_ICONS[route.name];
-  console.log(iconName);
   return {
     tabBarIcon: ({ color, size }) => (
       <Ionicons name={iconName} color={color} size={size} />
@@ -48,15 +48,17 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <ReastaurantsContextProvider>
-          <NavigationContainer>
-            <Tabs.Navigator screenOptions={screenOptions}>
-              <Tabs.Screen name="Restaurents" component={RestaurentsScreen} />
-              <Tabs.Screen name="Map" component={MapScreen} />
-              <Tabs.Screen name="Settings" component={SettingScreen} />
-            </Tabs.Navigator>
-          </NavigationContainer>
-        </ReastaurantsContextProvider>
+        <LocationContextProvider>
+          <ReastaurantsContextProvider>
+            <NavigationContainer>
+              <Tabs.Navigator screenOptions={screenOptions}>
+                <Tabs.Screen name="Restaurents" component={RestaurentsScreen} />
+                <Tabs.Screen name="Map" component={MapScreen} />
+                <Tabs.Screen name="Settings" component={SettingScreen} />
+              </Tabs.Navigator>
+            </NavigationContainer>
+          </ReastaurantsContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
