@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useContext } from "react";
-import { StatusBar, FlatList, View } from "react-native";
+import { StatusBar, FlatList, TouchableOpacity } from "react-native";
 import { RestaurentInfoCard } from "../components/restaurents-info-card.component";
 import styled from "styled-components/native";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -11,6 +11,7 @@ import { Search } from "../../../features/restaurents/components/search.componen
 const SafeArea = styled.SafeAreaView`
   flex: 1;
   ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
+  padding-top: 10px;
 `;
 
 const RestaurentList = styled(FlatList).attrs({
@@ -28,7 +29,7 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25%;
 `;
 
-export const RestaurentsScreen = () => {
+export const RestaurentsScreen = ({ navigation }) => {
   const { restaurants, error, isLoading } = useContext(ReastaurantsContext);
   return (
     <SafeArea>
@@ -42,9 +43,15 @@ export const RestaurentsScreen = () => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Spacer position="bottom" size="large">
-              <RestaurentInfoCard restaurent={item} />
-            </Spacer>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("RestaurantDetail", { restaurant: item })
+              }
+            >
+              <Spacer position="bottom" size="large">
+                <RestaurentInfoCard restaurent={item} />
+              </Spacer>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name}
