@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { RestaurentsNavigator } from "./restaurent.navigator";
-import { MapScreen } from "../../features/restaurents/screens/map.screen";
+import { MapScreen } from "../../features/map/screens/map.screen";
 import { SettingScreen } from "../../features/restaurents/screens/settings.screen";
 
 const TAB_ICONS = {
