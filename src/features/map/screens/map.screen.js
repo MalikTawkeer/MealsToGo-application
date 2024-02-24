@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import MapView, { Callout, Marker } from "react-native-maps";
-import { Text } from "react-native";
 import { Search } from "../components/search.component";
 
 import { LocationContext } from "../../../services/location/location.context";

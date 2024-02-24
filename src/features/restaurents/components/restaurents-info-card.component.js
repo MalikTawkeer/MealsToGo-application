@@ -14,7 +14,7 @@ import {
   Open,
   Icon,
 } from "./restaurents-info-card-styles";
-
+import { Favourite } from "../../../components/favourites/favourite.component";
 export const RestaurentInfoCard = ({ restaurent = {} }) => {
   const {
     name = "some restaurant",
@@ -27,12 +27,13 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = "TEMPORARILY CLOSED",
+    placeId,
   } = restaurent;
-
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
     <RestaurantCard elevation={5} key={name}>
+      <Favourite restaurant={restaurent} />
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
