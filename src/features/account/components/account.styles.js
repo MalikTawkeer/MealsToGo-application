@@ -1,4 +1,7 @@
 import styled from "styled-components/native";
+
+import LottieView from "lottie-react-native";
+
 import { Button, TextInput } from "react-native-paper";
 
 import { colors } from "../../../infrastructure/theme/colors";
@@ -44,4 +47,10 @@ export const ErrorContainer = styled.View`
   align-self: center;
   margin-top: ${(props) => props.theme.space[2]};
   margin-bottom: ${(props) => props.theme.space[2]};
+`;
+
+export const AnimationWrapper = styled(LottieView)`
+  width: 100%;
+  height: 30%;
+  position: relative;
 `;
