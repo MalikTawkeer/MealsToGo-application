@@ -1,17 +1,20 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { ReastaurantsContextProvider } from "../../services/restaurants/restaurants.context";
+import { LocationContextProvider } from "../../services/location/location.context";
+import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 
 import { RestaurentsNavigator } from "./restaurent.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
 import { SettingScreen } from "../../features/restaurents/screens/settings.screen";
 
 const TAB_ICONS = {
-  Restaurents: "md-restaurant",
-  Map: "md-map",
-  Settings: "md-settings",
+  Restaurents: "restaurant",
+  Map: "map",
+  Settings: "settings",
 };
 
 const screenOptions = ({ route }) => {
@@ -28,11 +31,15 @@ const screenOptions = ({ route }) => {
 const Tabs = createBottomTabNavigator();
 
 export const AppNavegator = ({}) => (
-  <NavigationContainer>
-    <Tabs.Navigator screenOptions={screenOptions}>
-      <Tabs.Screen name="Restaurents" component={RestaurentsNavigator} />
-      <Tabs.Screen name="Map" component={MapScreen} />
-      <Tabs.Screen name="Settings" component={SettingScreen} />
-    </Tabs.Navigator>
-  </NavigationContainer>
+  <FavouritesContextProvider>
+    <LocationContextProvider>
+      <ReastaurantsContextProvider>
+        <Tabs.Navigator screenOptions={screenOptions}>
+          <Tabs.Screen name="Restaurents" component={RestaurentsNavigator} />
+          <Tabs.Screen name="Map" component={MapScreen} />
+          <Tabs.Screen name="Settings" component={SettingScreen} />
+        </Tabs.Navigator>
+      </ReastaurantsContextProvider>
+    </LocationContextProvider>
+  </FavouritesContextProvider>
 );

@@ -27,7 +27,6 @@ export const RestaurentInfoCard = ({ restaurent = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = "TEMPORARILY CLOSED",
-    placeId,
   } = restaurent;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
