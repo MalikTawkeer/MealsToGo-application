@@ -15,9 +15,9 @@ export const AuthenticationContextProvider = ({ children }) => {
   onAuthStateChanged(auth, (usr) => {
     if (usr) {
       setUser(usr);
-      setIsLoading(false);
+      // setIsLoading(false);
     } else {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   });
 
@@ -43,7 +43,6 @@ export const AuthenticationContextProvider = ({ children }) => {
       setError("ERROR :: Passwords don't match!");
       return;
     }
-    console.log(email + password);
     registerRequest(auth, email, password)
       .then((u) => {
         console.log("USER::", u);

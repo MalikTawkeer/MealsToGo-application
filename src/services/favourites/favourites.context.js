@@ -31,13 +31,15 @@ export const FavouritesContextProvider = ({ children }) => {
 
   //load favourites initially
   useEffect(() => {
-    if (user) {
+    if (user && user.uid) {
       loadFavourites(user.uid);
     }
   }, [user]);
   //save favourites
   useEffect(() => {
-    saveFavourites(favourites, user.uid);
+    if (user && user.uid && favourites.length) {
+      saveFavourites(favourites, user.uid);
+    }
   }, [favourites, user]);
 
   const add = (restaurant) => {
