@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { signOut, getAuth, onAuthStateChanged } from "firebase/auth";
 // import { auth } from "../../config/firebase_config";
 
@@ -41,6 +41,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     setError("");
     if (password !== repeatedPassword) {
       setError("ERROR :: Passwords don't match!");
+      setIsLoading(false);
       return;
     }
     registerRequest(auth, email, password)

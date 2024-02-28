@@ -11,6 +11,7 @@ import { ReastaurantsContext } from "../../../services/restaurants/restaurants.c
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
 
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
+import { FadeInViewAnimation } from "../../../components/animations/fadein.animation";
 
 const SafeArea = styled.SafeAreaView`
   flex: 1;
@@ -62,7 +63,9 @@ export const RestaurentsScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurentInfoCard restaurent={item} />
+                <FadeInViewAnimation>
+                  <RestaurentInfoCard restaurent={item} />
+                </FadeInViewAnimation>
               </Spacer>
             </TouchableOpacity>
           );

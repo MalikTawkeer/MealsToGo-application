@@ -9,8 +9,7 @@ import { FavouritesContextProvider } from "../../services/favourites/favourites.
 
 import { RestaurentsNavigator } from "./restaurent.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
-import { SettingScreen } from "../../features/restaurents/screens/settings.screen";
-
+import { SettingsNavigator } from "./settings.navigator";
 const TAB_ICONS = {
   Restaurents: "restaurant",
   Map: "map",
@@ -37,7 +36,7 @@ export const AppNavegator = ({}) => (
         <Tabs.Navigator screenOptions={screenOptions}>
           <Tabs.Screen name="Restaurents" component={RestaurentsNavigator} />
           <Tabs.Screen name="Map" component={MapScreen} />
-          <Tabs.Screen name="Settings" component={SettingScreen} />
+          <Tabs.Screen name="Settings" component={SettingsNavigator} />
         </Tabs.Navigator>
       </ReastaurantsContextProvider>
     </LocationContextProvider>
