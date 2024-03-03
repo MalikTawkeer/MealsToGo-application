@@ -1,9 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React, { useContext, useState } from "react";
-import { StatusBar, FlatList, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
-import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
+import { MD2Colors } from "react-native-paper";
+
 import { Search } from "../../../features/restaurents/components/search.component";
+import {
+  RestaurentList,
+  SafeArea,
+  LoadingContainer,
+  Loading,
+} from "../components/restaurant-list.styles";
 
 import { ReastaurantsContext } from "../../../services/restaurants/restaurants.context";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
@@ -14,27 +20,6 @@ import { RestaurentInfoCard } from "../components/restaurents-info-card.componen
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
 import { FadeInViewAnimation } from "../../../components/animations/fadein.animation";
 import { Text } from "../../../typography/text.component";
-
-const SafeArea = styled.SafeAreaView`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
-  padding-top: 10px;
-`;
-
-const RestaurentList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
-
-const LoadingContainer = styled.View`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-`;
-const Loading = styled(ActivityIndicator)`
-  margin-left: -25%;
-`;
 
 export const RestaurentsScreen = ({ navigation }) => {
   const {
