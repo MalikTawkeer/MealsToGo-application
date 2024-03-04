@@ -10,7 +10,7 @@ import { CartContextProvider } from "../../services/cart/cart.context";
 
 import { RestaurentsNavigator } from "./restaurent.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
-import { CheckoutScreen } from "../../features/checkout/screens/CheckoutScreen";
+import { CheckoutNavigator } from "./checkout.navigator";
 
 import { SettingsNavigator } from "./settings.navigator";
 const TAB_ICONS = {
@@ -40,7 +40,7 @@ export const AppNavegator = ({}) => (
         <CartContextProvider>
           <Tabs.Navigator screenOptions={screenOptions}>
             <Tabs.Screen name="Restaurents" component={RestaurentsNavigator} />
-            <Tabs.Screen name="Checkout" component={CheckoutScreen} />
+            <Tabs.Screen name="Checkout" component={CheckoutNavigator} />
             <Tabs.Screen name="Map" component={MapScreen} />
             <Tabs.Screen name="Settings" component={SettingsNavigator} />
           </Tabs.Navigator>

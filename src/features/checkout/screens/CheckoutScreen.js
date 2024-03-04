@@ -12,6 +12,7 @@ import {
   NameInput,
   PayButton,
   ClearButton,
+  PaymentProcessing,
 } from "../components/checkout.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
@@ -19,17 +20,34 @@ import { CartContext } from "../../../services/cart/cart.context";
 
 import { payRequest } from "../../../services/checkout/checkout.service";
 
-export const CheckoutScreen = () => {
+export const CheckoutScreen = ({ navigation }) => {
   const { cart, restaurant, sum, clearCart } = useContext(CartContext);
   const [name, setName] = useState("");
   const [card, setCard] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onPay = () => {
+    setIsLoading(true);
     if (!card || !card.id) {
-      console.log(card);
+      setIsLoading(false);
+      navigation.navigate("CheckoutError", {
+        error: "Please fill valid credit card details",
+      });
+
       return;
     }
-    payRequest(card.id, sum, name);
+    payRequest(card.id, sum, name)
+      .then((result) => {
+        setIsLoading(false);
+        clearCart();
+        navigation.navigate("CheckoutSuccess");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        navigation.navigate("CheckoutError", {
+          error: err,
+        });
+      });
   };
 
   if (!cart || !restaurant) {
@@ -45,6 +63,7 @@ export const CheckoutScreen = () => {
   return (
     <SafeArea>
       <RestaurentInfoCard restaurent={restaurant} />
+      {isLoading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">
           <Spacer position="top" size="large">
@@ -66,15 +85,33 @@ export const CheckoutScreen = () => {
         />
         <Spacer position="bottom" size="large">
           {name.length > 0 && (
-            <CreditCardInput name={name} onSuccess={setCard} />
+            <CreditCardInput
+              name={name}
+              onSuccess={setCard}
+              onError={() =>
+                navigation.navigate("CheckoutError", {
+                  error: "somthing went wrong processing your credit card",
+                })
+              }
+            />
           )}
         </Spacer>
 
-        <PayButton icon="cash" mode="contained" onPress={onPay}>
+        <PayButton
+          disabled={isLoading}
+          icon="cash"
+          mode="contained"
+          onPress={onPay}
+        >
           Pay Now
         </PayButton>
         <Spacer position="top" size="medium">
-          <ClearButton icon="cart-off" mode="contained" onPress={clearCart}>
+          <ClearButton
+            disabled={isLoading}
+            icon="cart-off"
+            mode="contained"
+            onPress={clearCart}
+          >
             Clear Cart
           </ClearButton>
         </Spacer>
