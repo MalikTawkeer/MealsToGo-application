@@ -67,3 +67,24 @@
 [debug] [2024-03-04T09:49:12.245Z] Found firebase-functions binary at 'C:\Users\91705\Desktop\learning new things\react-native\mealsToGo\functions\node_modules\.bin\firebase-functions'
 [info] Serving at port 8604
 
+[debug] [2024-03-04T09:49:13.788Z] Got response from /__/functions.yaml {"endpoints":{"geocode":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"geocode"},"placesNearby":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"placesNearby"},"pay":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"pay"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] +  functions: Loaded functions definitions from source: geocode, placesNearby, pay. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: geocode, placesNearby, pay."}}
+[info] +  functions[us-central1-geocode]: http function initialized (http://127.0.0.1:5001/mealstogo-cffb9/us-central1/geocode). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mealstogo-cffb9/us-central1/geocode)."}}
+[info] +  functions[us-central1-placesNearby]: http function initialized (http://127.0.0.1:5001/mealstogo-cffb9/us-central1/placesNearby). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mealstogo-cffb9/us-central1/placesNearby)."}}
+[info] +  functions[us-central1-pay]: http function initialized (http://127.0.0.1:5001/mealstogo-cffb9/us-central1/pay). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/mealstogo-cffb9/us-central1/pay)."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
